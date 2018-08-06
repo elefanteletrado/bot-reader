@@ -50,6 +50,7 @@ namespace ElefanteLetrado.BotReader.Pages
 
         public bool HasReachLastPage()
         {
+            /*
             var headerTag = _browser.FindElement(By.CssSelector(".reader-header"));
 
             if (headerTag.GetAttribute("class").Contains("closed"))
@@ -57,8 +58,9 @@ namespace ElefanteLetrado.BotReader.Pages
                 var executor = (IJavaScriptExecutor)_browser;
                 executor.ExecuteScript("document.querySelectorAll('.reader-header')[0].classList.remove('closed')");
             }
+            */
 
-            var pageMark = _browser.FindElement(By.CssSelector(".reader-header > h1 > div.pull-right > span")).Text;
+            var pageMark = _browser.FindElement(By.CssSelector(".reader-header > h1 > span.pull-right")).Text;
 
             if (string.IsNullOrEmpty(pageMark))
             {
@@ -115,7 +117,7 @@ namespace ElefanteLetrado.BotReader.Pages
         public void GoToLibrary()
         {
             var buttons = _browser.FindElements(By.CssSelector(".el-reader-message-overlay .button.button-pink"));
-            buttons.First(b => b.GetAttribute("ng-click") == "goBackToLibrary()")
+            buttons.First(b => b.GetAttribute("data-ng-click") == "goBackToLibrary()")
                 .Click();
         }
 

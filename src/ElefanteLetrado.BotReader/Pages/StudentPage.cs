@@ -30,14 +30,14 @@ namespace ElefanteLetrado.BotReader.Pages
 
         public string[] GetAllBookNames()
         {
-            return _browser.FindElements(By.CssSelector("el-bookshelf-book > div > a"))
+            return _browser.FindElements(By.CssSelector("data-el-bookshelf-book > div > a"))
                 .Select(t => t.GetAttribute("title"))
                 .ToArray();
         }
 
         public void ClickBookByName(string name)
         {
-            _browser.FindElement(By.CssSelector("el-bookshelf-book > div > a[title='" + name + "']"))
+            _browser.FindElement(By.CssSelector("data-el-bookshelf-book > div > a[title='" + name + "']"))
                 .Click();
         }
 
@@ -45,7 +45,7 @@ namespace ElefanteLetrado.BotReader.Pages
         {
             try
             {
-                var tags = _browser.FindElements(By.TagName("el-bookshelf-book"));
+                var tags = _browser.FindElements(By.TagName("data-el-bookshelf-book"));
                 return tags != null && tags.Count > 0;
             }
             catch
